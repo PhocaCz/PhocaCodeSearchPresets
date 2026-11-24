@@ -56,4 +56,4 @@ This project is open source project - feel free to contribute! Thank you.
 - [Phoca on Reddit](https://www.reddit.com/user/PhocaCz)
 
 ### User guide
-extension/readme.md
+https://github.com/PhocaCz/PhocaCodeSearchPresets/blob/main/extension/readme.md
