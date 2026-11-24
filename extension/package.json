@@ -1,0 +1,146 @@
+{
+  "name": "search-presets",
+  "displayName": "Phoca Search Presets",
+  "description": "Quick presets for the 'files to include' and 'files to exclude' fields in the Search view. One click to filter your search by saved glob patterns.",
+  "version": "1.0.0",
+  "publisher": "phoca",
+  "author": {
+    "name": "Jan Pavelka (Phoca)",
+    "url": "https://github.com/PhocaCz/PhocaCodeSearchPresets"
+  },
+  "license": "GPL-2.0-only",
+  "homepage": "https://github.com/PhocaCz/PhocaCodeSearchPresets",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PhocaCz/PhocaCodeSearchPresets.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PhocaCz/PhocaCodeSearchPresets/issues"
+  },
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1f2a37",
+    "theme": "dark"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "search",
+    "find in files",
+    "files to include",
+    "files to exclude",
+    "filter",
+    "presets",
+    "glob",
+    "phoca"
+  ],
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "searchPresets.pickInclude",
+        "title": "Files to Include: Pick Preset",
+        "shortTitle": "Include Preset",
+        "category": "Search Presets",
+        "icon": {
+          "light": "images/include-light.svg",
+          "dark": "images/include-dark.svg"
+        }
+      },
+      {
+        "command": "searchPresets.pickExclude",
+        "title": "Files to Exclude: Pick Preset",
+        "shortTitle": "Exclude Preset",
+        "category": "Search Presets",
+        "icon": {
+          "light": "images/exclude-light.svg",
+          "dark": "images/exclude-dark.svg"
+        }
+      },
+      {
+        "command": "searchPresets.clearFilters",
+        "title": "Clear Files to Include and Exclude",
+        "category": "Search Presets",
+        "icon": "$(clear-all)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "searchPresets.pickInclude",
+          "when": "view == workbench.view.search",
+          "group": "navigation@90"
+        },
+        {
+          "command": "searchPresets.pickExclude",
+          "when": "view == workbench.view.search",
+          "group": "navigation@91"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Phoca Search Presets",
+      "properties": {
+        "searchPresets.include": {
+          "type": "array",
+          "order": 1,
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Name shown in the picker."
+              },
+              "pattern": {
+                "type": "string",
+                "description": "Glob pattern(s) for the field. Separate several patterns with a comma."
+              }
+            },
+            "required": [
+              "pattern"
+            ]
+          },
+          "default": [],
+          "markdownDescription": "Presets for the **files to include** field in Search. Each entry is an object with `label` and `pattern`."
+        },
+        "searchPresets.exclude": {
+          "type": "array",
+          "order": 2,
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Name shown in the picker."
+              },
+              "pattern": {
+                "type": "string",
+                "description": "Glob pattern(s) for the field. Separate several patterns with a comma."
+              }
+            },
+            "required": [
+              "pattern"
+            ]
+          },
+          "default": [],
+          "markdownDescription": "Presets for the **files to exclude** field in Search. Each entry is an object with `label` and `pattern`."
+        },
+        "searchPresets.triggerSearch": {
+          "type": "boolean",
+          "default": true,
+          "order": 3,
+          "description": "Run the search immediately after a preset is applied."
+        }
+      }
+    }
+  }
+}
